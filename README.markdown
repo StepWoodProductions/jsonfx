@@ -6,5 +6,5 @@
 ### Compatible Runtimes:
 - Unity3d 5.x
 
-  [1]: http://jsonfx.net
+  [1]: https://github.com/jsonfx/jsonfx
   [2]: LICENSE.txt
