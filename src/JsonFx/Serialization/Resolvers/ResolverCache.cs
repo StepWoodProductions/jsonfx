@@ -2,30 +2,30 @@
 
 /*---------------------------------------------------------------------------------*\
 
-	Distributed under the terms of an MIT-style license:
+    Distributed under the terms of an MIT-style license:
 
-	The MIT License
+    The MIT License
 
-	Copyright (c) 2006-2010 Stephen M. McKamey
-	Modifications Copyright (c) 2015 StepWood Productions, LLC
+    Copyright (c) 2006-2010 Stephen M. McKamey
+    Modifications Copyright (c) 2015 StepWood Productions, LLC
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
 
 \*---------------------------------------------------------------------------------*/
 
@@ -40,10 +40,10 @@ using System.Reflection;
 namespace JsonFx.Serialization.Resolvers
 {
 #if NET40 && !SILVERLIGHT
-	using EnumCacheDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, IDictionary<Enum, string>>;
-	using FactoriesDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, FactoryMap>;
-	using MemberCacheDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, IDictionary<string, MemberMap>>;
-	using NameCacheDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, IEnumerable<DataName>>;
+    using EnumCacheDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, IDictionary<Enum, string>>;
+    using FactoriesDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, FactoryMap>;
+    using MemberCacheDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, IDictionary<string, MemberMap>>;
+    using NameCacheDictionary=System.Collections.Concurrent.ConcurrentDictionary<Type, IEnumerable<DataName>>;
 #else
 
     using EnumCacheDictionary = System.Collections.Generic.Dictionary<Type, IDictionary<Enum, string>>;
@@ -313,7 +313,7 @@ namespace JsonFx.Serialization.Resolvers
                 if (this.CollectionCtors == null)
                 {
 #if NETCF
-					return new Type[]{ };
+                    return new Type[]{ };
 #else
                     return Type.EmptyTypes;
 #endif
@@ -366,7 +366,7 @@ namespace JsonFx.Serialization.Resolvers
                  (type.GetConstructor(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy,
                                       null,
 #if NETCF
-									  new Type[]{ },
+                                      new Type[]{ },
 #else
  Type.EmptyTypes,
 #endif
@@ -384,15 +384,15 @@ namespace JsonFx.Serialization.Resolvers
         #region Fields
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-		// no reader-writer lock implementation
+        // no reader-writer lock implementation
 #elif NET20 || NET30
-		private const int LockTimeout = 250;
+        private const int LockTimeout = 250;
 
-		private readonly System.Threading.ReaderWriterLock MapLock = new System.Threading.ReaderWriterLock();
-		private readonly System.Threading.ReaderWriterLock FactoryLock = new System.Threading.ReaderWriterLock();
+        private readonly System.Threading.ReaderWriterLock MapLock = new System.Threading.ReaderWriterLock();
+        private readonly System.Threading.ReaderWriterLock FactoryLock = new System.Threading.ReaderWriterLock();
 #elif NET35
-		private readonly System.Threading.ReaderWriterLockSlim MapLock = new System.Threading.ReaderWriterLockSlim();
-		private readonly System.Threading.ReaderWriterLockSlim FactoryLock = new System.Threading.ReaderWriterLockSlim();
+        private readonly System.Threading.ReaderWriterLockSlim MapLock = new System.Threading.ReaderWriterLockSlim();
+        private readonly System.Threading.ReaderWriterLockSlim FactoryLock = new System.Threading.ReaderWriterLockSlim();
 #endif
 
         private readonly IDictionary<Type, IDictionary<string, MemberMap>> MemberCache = new MemberCacheDictionary();
@@ -447,11 +447,11 @@ namespace JsonFx.Serialization.Resolvers
             IEnumerable<DataName> name;
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock (this.NameCache)
+            lock (this.NameCache)
 #elif NET20 || NET30
-			this.MapLock.AcquireReaderLock(ResolverCache.LockTimeout);
+            this.MapLock.AcquireReaderLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.MapLock.EnterReadLock();
+            this.MapLock.EnterReadLock();
 #endif
             try
             {
@@ -463,11 +463,11 @@ namespace JsonFx.Serialization.Resolvers
             finally
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.MapLock.ReleaseReaderLock();
+                this.MapLock.ReleaseReaderLock();
 #elif NET35
-				this.MapLock.ExitReadLock();
+                this.MapLock.ExitReadLock();
 #endif
             }
 
@@ -486,11 +486,11 @@ namespace JsonFx.Serialization.Resolvers
             IDictionary<string, MemberMap> map;
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock (this.MemberCache)
+            lock (this.MemberCache)
 #elif NET20 || NET30
-			this.MapLock.AcquireReaderLock(ResolverCache.LockTimeout);
+            this.MapLock.AcquireReaderLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.MapLock.EnterReadLock();
+            this.MapLock.EnterReadLock();
 #endif
 #if !NET40
             try
@@ -506,11 +506,11 @@ namespace JsonFx.Serialization.Resolvers
 #endif
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.MapLock.ReleaseReaderLock();
+                this.MapLock.ReleaseReaderLock();
 #elif NET35
-				this.MapLock.ExitReadLock();
+                this.MapLock.ExitReadLock();
 #endif
             }
 
@@ -543,11 +543,11 @@ namespace JsonFx.Serialization.Resolvers
             IDictionary<Enum, string> map;
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock (this.EnumCache)
+            lock (this.EnumCache)
 #elif NET20 || NET30
-			this.MapLock.AcquireReaderLock(ResolverCache.LockTimeout);
+            this.MapLock.AcquireReaderLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.MapLock.EnterReadLock();
+            this.MapLock.EnterReadLock();
 #endif
 #if !NET40
             try
@@ -563,11 +563,11 @@ namespace JsonFx.Serialization.Resolvers
 #endif
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.MapLock.ReleaseReaderLock();
+                this.MapLock.ReleaseReaderLock();
 #elif NET35
-				this.MapLock.ExitReadLock();
+                this.MapLock.ExitReadLock();
 #endif
             }
 
@@ -581,16 +581,16 @@ namespace JsonFx.Serialization.Resolvers
         public void Clear()
         {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock (this.NameCache)
-			lock (this.MemberCache)
-			lock (this.EnumCache)
-			lock (this.Factories)
+            lock (this.NameCache)
+            lock (this.MemberCache)
+            lock (this.EnumCache)
+            lock (this.Factories)
 #elif NET20 || NET30
-			this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
-			this.FactoryLock.AcquireWriterLock(ResolverCache.LockTimeout);
+            this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
+            this.FactoryLock.AcquireWriterLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.MapLock.EnterWriteLock();
-			this.FactoryLock.EnterWriteLock();
+            this.MapLock.EnterWriteLock();
+            this.FactoryLock.EnterWriteLock();
 #endif
 #if !NET40
             try
@@ -606,13 +606,13 @@ namespace JsonFx.Serialization.Resolvers
 #endif
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.FactoryLock.ReleaseWriterLock();
-				this.MapLock.ReleaseWriterLock();
+                this.FactoryLock.ReleaseWriterLock();
+                this.MapLock.ReleaseWriterLock();
 #elif NET35
-				this.FactoryLock.ExitWriteLock();
-				this.MapLock.ExitWriteLock();
+                this.FactoryLock.ExitWriteLock();
+                this.MapLock.ExitWriteLock();
 #endif
             }
         }
@@ -654,12 +654,12 @@ namespace JsonFx.Serialization.Resolvers
                 typeof(IDictionary).IsAssignableFrom(objectType))
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				lock (this.MemberCache)
-				lock (this.NameCache)
+                lock (this.MemberCache)
+                lock (this.NameCache)
 #elif NET20 || NET30
-				this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
+                this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
 #elif NET35
-				this.MapLock.EnterWriteLock();
+                this.MapLock.EnterWriteLock();
 #endif
 #if !NET40
                 try
@@ -674,11 +674,11 @@ namespace JsonFx.Serialization.Resolvers
 #endif
                 {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-					// noop
+                    // noop
 #elif NET20 || NET30
-					this.MapLock.ReleaseWriterLock();
+                    this.MapLock.ReleaseWriterLock();
 #elif NET35
-					this.MapLock.ExitWriteLock();
+                    this.MapLock.ExitWriteLock();
 #endif
                 }
             }
@@ -786,12 +786,12 @@ namespace JsonFx.Serialization.Resolvers
             }
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock (this.MemberCache)
-			lock (this.NameCache)
+            lock (this.MemberCache)
+            lock (this.NameCache)
 #elif NET20 || NET30
-			this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
+            this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.MapLock.EnterWriteLock();
+            this.MapLock.EnterWriteLock();
 #endif
 #if !NET40
             try
@@ -806,11 +806,11 @@ namespace JsonFx.Serialization.Resolvers
 #endif
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.MapLock.ReleaseWriterLock();
+                this.MapLock.ReleaseWriterLock();
 #elif NET35
-				this.MapLock.ExitWriteLock();
+                this.MapLock.ExitWriteLock();
 #endif
             }
         }
@@ -887,13 +887,13 @@ namespace JsonFx.Serialization.Resolvers
             }
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock(this.NameCache)
-			lock(this.EnumCache)
-			lock(this.MemberCache)
+            lock(this.NameCache)
+            lock(this.EnumCache)
+            lock(this.MemberCache)
 #elif NET20 || NET30
-			this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
+            this.MapLock.AcquireWriterLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.MapLock.EnterWriteLock();
+            this.MapLock.EnterWriteLock();
 #endif
 #if !NET40
             try
@@ -909,11 +909,11 @@ namespace JsonFx.Serialization.Resolvers
 #endif
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.MapLock.ReleaseWriterLock();
+                this.MapLock.ReleaseWriterLock();
 #elif NET35
-				this.MapLock.ExitWriteLock();
+                this.MapLock.ExitWriteLock();
 #endif
             }
         }
@@ -932,11 +932,11 @@ namespace JsonFx.Serialization.Resolvers
             FactoryMap map;
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock (this.Factories)
+            lock (this.Factories)
 #elif NET20 || NET30
-			this.FactoryLock.AcquireReaderLock(ResolverCache.LockTimeout);
+            this.FactoryLock.AcquireReaderLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.FactoryLock.EnterReadLock();
+            this.FactoryLock.EnterReadLock();
 #endif
 #if !NET40
             try
@@ -952,22 +952,22 @@ namespace JsonFx.Serialization.Resolvers
 #endif
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.FactoryLock.ReleaseReaderLock();
+                this.FactoryLock.ReleaseReaderLock();
 #elif NET35
-				this.FactoryLock.ExitReadLock();
+                this.FactoryLock.ExitReadLock();
 #endif
             }
 
             map = new FactoryMap(type);
 
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-			lock (this.Factories)
+            lock (this.Factories)
 #elif NET20 || NET30
-			this.FactoryLock.AcquireWriterLock(ResolverCache.LockTimeout);
+            this.FactoryLock.AcquireWriterLock(ResolverCache.LockTimeout);
 #elif NET35
-			this.FactoryLock.EnterWriteLock();
+            this.FactoryLock.EnterWriteLock();
 #endif
 #if !NET40
             try
@@ -981,11 +981,11 @@ namespace JsonFx.Serialization.Resolvers
 #endif
             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-				// noop
+                // noop
 #elif NET20 || NET30
-				this.FactoryLock.ReleaseWriterLock();
+                this.FactoryLock.ReleaseWriterLock();
 #elif NET35
-				this.FactoryLock.ExitWriteLock();
+                this.FactoryLock.ExitWriteLock();
 #endif
             }
         }

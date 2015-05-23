@@ -2,30 +2,30 @@
 
 /*---------------------------------------------------------------------------------*\
 
-	Distributed under the terms of an MIT-style license:
+    Distributed under the terms of an MIT-style license:
 
-	The MIT License
+    The MIT License
 
-	Copyright (c) 2006-2010 Stephen M. McKamey
-	Modifications Copyright (c) 2015 StepWood Productions, LLC
+    Copyright (c) 2006-2010 Stephen M. McKamey
+    Modifications Copyright (c) 2015 StepWood Productions, LLC
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
 
 \*---------------------------------------------------------------------------------*/
 
@@ -115,7 +115,7 @@ namespace JsonFx.Serialization.Resolvers
                                 if (word.Length <= 1)
                                 {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-								words[i] = word.ToUpper();
+                                words[i] = word.ToUpper();
 #else
                                     words[i] = word.ToUpperInvariant();
 #endif
@@ -123,7 +123,7 @@ namespace JsonFx.Serialization.Resolvers
                                 else
                                 {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-								words[i] = Char.ToUpper(word[0])+word.Substring(1).ToLower();
+                                words[i] = Char.ToUpper(word[0])+word.Substring(1).ToLower();
 #else
                                     words[i] = Char.ToUpperInvariant(word[0]) + word.Substring(1).ToLowerInvariant();
 #endif
@@ -136,7 +136,7 @@ namespace JsonFx.Serialization.Resolvers
                                 if (i == 0)
                                 {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-								words[i] = word.ToLower();
+                                words[i] = word.ToLower();
 #else
                                     words[i] = word.ToLowerInvariant();
 #endif
@@ -144,7 +144,7 @@ namespace JsonFx.Serialization.Resolvers
                                 else if (word.Length <= 1)
                                 {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-								words[i] = word.ToUpper();
+                                words[i] = word.ToUpper();
 #else
                                     words[i] = word.ToUpperInvariant();
 #endif
@@ -152,7 +152,7 @@ namespace JsonFx.Serialization.Resolvers
                                 else
                                 {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-								words[i] = Char.ToUpper(word[0])+word.Substring(1).ToLower();
+                                words[i] = Char.ToUpper(word[0])+word.Substring(1).ToLower();
 #else
                                     words[i] = Char.ToUpperInvariant(word[0]) + word.Substring(1).ToLowerInvariant();
 #endif
@@ -162,7 +162,7 @@ namespace JsonFx.Serialization.Resolvers
                         case WordCasing.Lowercase:
                             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-							words[i] = words[i].ToLower();
+                            words[i] = words[i].ToLower();
 #else
                                 words[i] = words[i].ToLowerInvariant();
 #endif
@@ -171,7 +171,7 @@ namespace JsonFx.Serialization.Resolvers
                         case WordCasing.Uppercase:
                             {
 #if SILVERLIGHT && (NET20 || NET30 || NET35)
-							words[i] = words[i].ToUpper();
+                            words[i] = words[i].ToUpper();
 #else
                                 words[i] = words[i].ToUpperInvariant();
 #endif

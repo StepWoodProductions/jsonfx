@@ -2,30 +2,30 @@
 
 /*---------------------------------------------------------------------------------*\
 
-	Distributed under the terms of an MIT-style license:
+    Distributed under the terms of an MIT-style license:
 
-	The MIT License
+    The MIT License
 
-	Copyright (c) 2006-2010 Stephen M. McKamey
-	Modifications Copyright (c) 2015 StepWood Productions, LLC
+    Copyright (c) 2006-2010 Stephen M. McKamey
+    Modifications Copyright (c) 2015 StepWood Productions, LLC
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	THE SOFTWARE.
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
 
 \*---------------------------------------------------------------------------------*/
 
@@ -57,9 +57,9 @@ namespace JsonFx.Json
             #region Constants
 
 #if WINDOWS_PHONE
-			private static readonly JsonFx.CodeGen.ProxyDelegate EnumGetValues = JsonFx.CodeGen.DynamicMethodGenerator.GetMethodProxy(typeof(Enum), "GetValues");
+            private static readonly JsonFx.CodeGen.ProxyDelegate EnumGetValues = JsonFx.CodeGen.DynamicMethodGenerator.GetMethodProxy(typeof(Enum), "GetValues");
 #elif SILVERLIGHT
-			private static readonly JsonFx.CodeGen.ProxyDelegate EnumGetValues = JsonFx.CodeGen.DynamicMethodGenerator.GetMethodProxy(typeof(Enum), "InternalGetValues");
+            private static readonly JsonFx.CodeGen.ProxyDelegate EnumGetValues = JsonFx.CodeGen.DynamicMethodGenerator.GetMethodProxy(typeof(Enum), "InternalGetValues");
 #endif
 
             #endregion Constants
@@ -670,7 +670,7 @@ namespace JsonFx.Json
             {
                 ulong longVal = Convert.ToUInt64(value);
 #if SILVERLIGHT
-				ulong[] enumValues = (ulong[])JsonFormatter.EnumGetValues(enumType);
+                ulong[] enumValues = (ulong[])JsonFormatter.EnumGetValues(enumType);
 #else
                 Array enumValues = Enum.GetValues(enumType);
 #endif
