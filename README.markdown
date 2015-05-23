@@ -7,4 +7,4 @@
 - Unity3d 5.x
 
   [1]: http://jsonfx.net
-  [2]: http://jsonfx.net/license
+  [2]: LICENSE.txt
